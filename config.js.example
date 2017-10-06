@@ -1,6 +1,6 @@
 const config = {
-  // Bot Owner, level 10 by default. A User ID. Should never be anything else than the bot owner's ID.
-  "ownerID": "123456789123456",
+  // Bot Owner, level 10 by default. You no longer need to supply the owner ID, as the bot
+  // will pull this information directly from it's application page.
 
   // Bot Admins, level 9 by default. Array of user ID strings.
   "admins": [],
@@ -10,6 +10,14 @@ const config = {
 
   // Your Bot's Token. Available on https://discordapp.com/developers/applications/me
   "token": "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0",
+
+  "dashboard" : {
+    "oauthSecret": "enter oauth secret here", // This is the `client` secret in your bot application page.
+    "callbackURL": "http://localhost:8080/callback",
+    "sessionSecret": "super-secret-session-thing",
+    "domain": "localhost",
+    "port": 8080
+  },
 
   // Default per-server settings. New guilds have these settings. 
   "defaultSettings" : {
@@ -92,7 +100,7 @@ const config = {
     { level: 10,
       name: "Bot Owner", 
       // Another simple check, compares the message author id to the one stored in the config file.
-      check: (message) => message.client.config.ownerID === message.author.id
+      check: (message) => message.client.appInfo.owner.id === message.author.id
     }
   ]
 };
